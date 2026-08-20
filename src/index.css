@@ -1,0 +1,1224 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   ACKO Design Tokens — local stand-in for `@acko/tokens/tokens.css` + `theme.css`
+   The real `@acko/*` packages live on an internal Nexus registry that isn't
+   reachable from this environment, so these values are authored directly from
+   the project skill files (.claude/skills/acko-design-system/*.md) instead of
+   being pulled from the package. Layering matches the documented 3-layer
+   system: Primitives → Semantics → Components. Light theme only (the source
+   screens are light mode). Swap this file for the real package import the
+   moment `@acko/tokens` is installable — variable names match 1:1.
+   ============================================================================ */
+
+@theme inline {
+  /* scales.md — 1px-per-unit Tailwind spacing base */
+  --spacing: 0.0625rem;
+}
+
+:root {
+  /* ---- Layer 1: Primitives (primitives.md) ---- */
+
+  /* Grey */
+  --solidGreyWhite: #ffffff;
+  --solidGrey50: #fafafa;
+  --solidGrey100: #f5f5f5;
+  --solidGrey150: #efeff0;
+  --solidGrey200: #dcdcdc;
+  --solidGrey250: #cccbcd;
+  --solidGrey300: #b7b7b8;
+  --solidGrey350: #8f8e92;
+  --solidGrey400: #7a787d;
+  --solidGrey450: #605f63;
+  --solidGrey500: #474649;
+  --solidGrey550: #292829;
+  --solidGrey600: #1e1e1f;
+  --solidGrey650: #19191a;
+  --solidGrey700: #141414;
+  --solidGrey750: #0f0f10;
+  --solidGrey800: #0a0a0a;
+  --solidGrey850: #050505;
+  --solidGrey900: #000000;
+  --solidGreyBlack: #000000;
+
+  /* Purple / Primary */
+  --solidPrimary50: #f3f3ff;
+  --solidPrimary100: #e1e0fe;
+  --solidPrimary150: #d1cffd;
+  --solidPrimary200: #c1bdfc;
+  --solidPrimary300: #a69cf9;
+  --solidPrimary400: #8e7cf4;
+  --solidPrimary500: #795dee;
+  --solidPrimary600: #6841e6;
+  --solidPrimary700: #5a1fd4;
+  --solidPrimary800: #3a1ba5;
+  --solidPrimary850: #33198f;
+  --solidPrimary900: #2b1678;
+  --solidPrimary950: #241362;
+
+  /* Green / Secondary */
+  --solidSecondary50: #f0fdf4;
+  --solidSecondary100: #dcfce7;
+  --solidSecondary200: #bbf7d0;
+  --solidSecondary300: #86efac;
+  --solidSecondary400: #4ade80;
+  --solidSecondary500: #22c55e;
+  --solidSecondary600: #16a34a;
+  --solidSecondary700: #15803d;
+  --solidSecondary900: #14532d;
+
+  /* Red — errors */
+  --solidRed50: #fef2f2;
+  --solidRed100: #fee2e2;
+  --solidRed300: #fca5a5;
+  --solidRed500: #ef4444;
+  --solidRed600: #dc2626;
+  --solidRed700: #b91c1c;
+  --solidRed800: #991b1b;
+
+  /* Orange — warnings (semantics.md: "Warning uses Orange, not Amber or Yellow") */
+  --solidOrange50: #fff4ec;
+  --solidOrange100: #ffe6d3;
+  --solidOrange300: #ffb681;
+  --solidOrange500: #f78a3c;
+  --solidOrange600: #eb740a;
+  --solidOrange700: #c25b06;
+  --solidOrange900: #6e3403;
+
+  /* Alpha */
+  --alphaGreyA50: rgba(0, 0, 0, 0.02);
+  --alphaGreyA100: rgba(0, 0, 0, 0.04);
+  --alphaGreyA150: rgba(0, 0, 0, 0.06);
+  --alphaGreyA200: rgba(0, 0, 0, 0.08);
+  --alphaGreyA300: rgba(0, 0, 0, 0.12);
+  --alphaGreyA400: rgba(0, 0, 0, 0.4);
+  --alphaGreyA500: rgba(0, 0, 0, 0.5);
+  --alphaWhiteA50: rgba(255, 255, 255, 0.04);
+  --alphaWhiteA100: rgba(255, 255, 255, 0.08);
+  --alphaWhiteA150: rgba(255, 255, 255, 0.12);
+  --alphaWhiteA200: rgba(255, 255, 255, 0.16);
+  --alphaPrimaryA600: rgba(104, 65, 230, 0.32);
+  --alphaPrimaryA700: rgba(104, 65, 230, 0.4);
+  --alphaRedA100: rgba(239, 68, 68, 0.08);
+  --alphaRedA200: rgba(239, 68, 68, 0.16);
+  --alphaRedA500: rgba(239, 68, 68, 0.5);
+
+  /* Border widths */
+  --borderNone: 0px;
+  --borderHairline: 1px;
+  --borderControl: 2px;
+  --borderHeavy: 4px;
+
+  /* Elevation (primitives.md / shadows.md) */
+  --elevationE0: none;
+  --elevationE1: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --elevationE2: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --elevationE3: 0px 2px 16px 4px rgba(0, 0, 0, 0.04);
+  --elevationE4: 0 4px 24px rgba(0, 0, 0, 0.1);
+  --elevationE5: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  --shadowXs:
+    0px 5px 10px 0px rgba(0, 0, 0, 0.02), 0px 18px 18px 0px rgba(0, 0, 0, 0.02),
+    0px 41px 25px 0px rgba(0, 0, 0, 0.01);
+  --shadowS: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadowM: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadowL: 0 4px 24px rgba(0, 0, 0, 0.1);
+  --shadowXl: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Radii (radii.md) */
+  --radiusSm: 4px;
+  --radiusMd: 6px;
+  --radiusLg: 8px;
+  --radiusXl: 10px;
+  --radius2xl: 12px;
+  --radius3xl: 16px;
+  --radius4xl: 20px;
+  --radiusFull: 9999px;
+
+  /* ---- Layer 4: Brand (semantics.md) ---- */
+  --brandPrimary: var(--solidPrimary600);
+  --brandHover: var(--solidPrimary700);
+  --brandActive: var(--solidPrimary800);
+  --brandDisable: var(--solidPrimary400);
+  --brandSubtle: var(--solidPrimary100);
+  --brandSubtleHover: var(--solidPrimary150);
+  --brandSubtleActive: var(--solidPrimary200);
+  --brandRing: var(--solidPrimary200);
+  --brandOnPrimary: var(--solidGreyWhite);
+  --brandText: var(--solidPrimary600);
+
+  /* ---- Layer 5: Semantics (semantics.md) ---- */
+
+  /* text/ */
+  --textPrimary: var(--solidGrey750);
+  --textSecondary: var(--solidGrey500);
+  --textTertiary: var(--solidGrey400);
+  --textMuted: var(--solidGrey450);
+  --textDisabled: var(--solidGrey300);
+  --textInvert: var(--solidGrey100);
+  --textBrand: var(--brandText);
+  --textBrandStrong: var(--solidPrimary700);
+  --textOnBrand: var(--brandOnPrimary);
+  --textLink: #2563eb;
+  --textStaticLight: var(--solidGreyWhite);
+  --textStaticDark: var(--solidGrey800);
+
+  /* surface/ */
+  --surfaceBase: var(--solidGrey100);
+  --surfaceRaised: var(--solidGrey100);
+  --surfaceMuted: var(--alphaGreyA50);
+  --surfaceInverted: var(--solidGrey650);
+  --surfaceOverlay: var(--alphaGreyA400);
+  --surfaceStaticBlack: var(--solidGrey700);
+  --surfaceStaticWhite: var(--solidGrey150);
+  --surfaceAccent: var(--brandPrimary);
+  --surfaceAccentLight: rgba(153, 116, 249, 0.16);
+
+  /* surface/fill/ */
+  --surfaceFillDefault: var(--solidGrey50);
+  --surfaceFillHighlight: var(--solidGreyWhite);
+  --surfaceFillHover: var(--alphaGreyA50);
+  --surfaceFillActive: var(--solidGrey200);
+  --surfaceFillMuted: var(--solidGrey100);
+  --surfaceFillGhost: transparent;
+  --surfaceFillSubtle: var(--solidGrey150);
+  --surfaceFillInput: var(--solidGreyWhite);
+  --surfaceFillInputFocus: var(--brandSubtleHover);
+  --surfaceFillInverted: var(--solidGrey700);
+  --surfaceFillDanger: var(--alphaRedA100);
+  --surfaceFillDisable: var(--alphaGreyA50);
+
+  /* fill/ — brand-interactive */
+  --fillBrand: var(--brandPrimary);
+  --fillBrandHover: var(--brandHover);
+  --fillBrandActive: var(--brandActive);
+  --fillBrandSubtle: var(--brandSubtle);
+  --fillSubtleHover: var(--brandSubtleHover);
+  --fillSubtleActive: var(--brandSubtleActive);
+  --fillBrandDisabled: var(--brandDisable);
+
+  /* border/ */
+  --borderSoft: var(--alphaGreyA50);
+  --borderSubtle: var(--solidGrey200);
+  --borderMedium: var(--alphaGreyA100);
+  --borderStrong: var(--alphaGreyA150);
+  --borderDefault: var(--solidGrey300);
+  --borderBrand: var(--solidPrimary500);
+  --borderSelected: var(--alphaGreyA300);
+  --borderFocus: var(--alphaPrimaryA700);
+  --borderError: var(--alphaRedA500);
+  --borderDivider: var(--solidGrey200);
+  --borderControlToken: var(--solidGrey150);
+  --borderControlHover: var(--solidGrey200);
+
+  /* disabled/ */
+  --disabledBg: var(--solidGrey150);
+  --disabledBorder: var(--alphaGreyA200);
+  --disabledText: var(--solidGrey350);
+
+  /* status/warning (advisory banner) */
+  --statusWarningBase: var(--solidOrange500);
+  --statusWarningText: var(--solidOrange700);
+  --statusWarningSubtle: var(--solidOrange100);
+  --statusWarningBorder: var(--solidOrange300);
+
+  /* status/error (form validation) */
+  --statusErrorBase: var(--solidRed500);
+  --statusErrorText: var(--solidRed700);
+  --statusErrorSubtle: var(--solidRed100);
+  --statusErrorBorder: var(--solidRed300);
+
+  /* status/success */
+  --statusSuccessBase: var(--solidSecondary500);
+  --statusSuccessText: var(--solidSecondary700);
+  --statusSuccessSubtle: var(--solidSecondary100);
+  --statusSuccessBorder: var(--solidSecondary300);
+
+  /* ---- Layer 6: Components (components.md) ---- */
+
+  /* button/ */
+  --buttonFillPrimaryDefault: var(--fillBrand);
+  --buttonFillPrimaryHover: var(--fillBrandHover);
+  --buttonFillPrimaryActive: var(--fillBrandActive);
+  --buttonFillPrimaryDisabled: var(--fillBrandDisabled);
+  --buttonFillSecondaryDefault: transparent;
+  --buttonFillSecondaryHover: var(--surfaceFillHover);
+  --buttonFillSecondaryActive: var(--surfaceFillActive);
+  --buttonFillGhostDefault: transparent;
+  --buttonFillGhostHover: var(--surfaceFillHover);
+  --buttonFillGhostActive: var(--surfaceFillActive);
+  --buttonFillInvertedDefault: var(--surfaceFillInverted);
+  --buttonFillInvertedHover: var(--solidGrey800);
+  --buttonFillInvertedActive: var(--solidGreyBlack);
+  --buttonBorderSecondaryDefault: var(--borderDefault);
+  --buttonBorderSecondaryDisabled: var(--disabledBorder);
+
+  /* inputField/ */
+  --inputFieldFill: var(--surfaceFillInput);
+  --inputFieldFillDisabled: var(--disabledBg);
+  --inputFieldBorder: var(--borderDefault);
+  --inputFieldBorderHover: var(--borderControlHover);
+  --inputFieldBorderFilled: var(--borderDefault);
+  --inputFieldBorderError: var(--borderError);
+  --inputFieldLabeltext: var(--textSecondary);
+  --inputFieldLabelTextActive: var(--textSecondary);
+  --inputFieldLabelTextDisabled: var(--textDisabled);
+  --inputFieldPlaceholderText: var(--textMuted);
+  --inputFieldFilledText: var(--textPrimary);
+  --inputFieldHelperText: var(--textTertiary);
+  --inputFieldHelperTextError: var(--statusErrorText);
+  --inputFieldFocusRing: var(--borderFocus);
+
+  /* dropdown/ — full set per components.md, not just the closed-field subset */
+  --dropdownFill: var(--surfaceFillInput);
+  --dropdownFillDisabled: var(--disabledBg);
+  --dropdownBg: var(--surfaceFillInput);
+  --dropdownBorder: var(--borderDefault);
+  --dropdownBorderHover: var(--borderControlHover);
+  --dropdownBorderFilled: var(--borderDefault);
+  --dropdownBorderDisabled: var(--disabledBorder);
+  --dropdownBorderError: var(--borderError);
+  --dropdownBorderOpen: var(--borderBrand);
+  --dropdownLabeltext: var(--textSecondary);
+  --dropdownLabelTextActive: var(--textSecondary);
+  --dropdownLabelTextDisabled: var(--textDisabled);
+  --dropdownPlaceholderText: var(--textMuted);
+  --dropdownFilledText: var(--textPrimary);
+  --dropdownFilledTextDisabled: var(--disabledText);
+  --dropdownHelperText: var(--textTertiary);
+  --dropdownHelperTextError: var(--statusErrorText);
+  --dropdownHelperTextSuccess: var(--statusSuccessText);
+  --dropdownIcon: var(--textSecondary);
+  --dropdownIconDisabled: var(--textDisabled);
+  --dropdownCheckIcon: var(--fillBrand);
+  --dropdownCheckboxBorder: var(--borderDefault);
+  --dropdownFocusRing: var(--borderSelected);
+  --dropdownOptionHover: var(--surfaceFillHover);
+  --dropdownOptionSelectedBg: var(--fillBrandSubtle);
+  --dropdownOptionFill: transparent;
+  --dropdownOptionText: var(--textPrimary);
+  --dropdownPanelFill: var(--surfaceFillHighlight);
+  --dropdownPanelBorder: var(--borderSubtle);
+
+  /* chip/ — default vs. selected state for a single-select chip group */
+  --chipFill: var(--surfaceFillDefault);
+  --chipSelectedFill: var(--fillBrandSubtle);
+  --chipText: var(--textPrimary);
+  --chipSelectedText: var(--textBrandStrong);
+  --chipBorder: var(--borderDefault);
+  --chipSelectedBorder: var(--borderBrand);
+
+  /* dialog / drawer (components.md "dialog / drawer / skeleton / pagination") */
+  --dialogBg: var(--surfaceFillHighlight);
+  --dialogOverlay: var(--surfaceOverlay);
+  --dialogBorder: var(--borderSubtle);
+  --drawerBg: var(--surfaceFillHighlight);
+  --drawerOverlay: var(--surfaceOverlay);
+
+  /* alert/ */
+  --alertBodyText: var(--textPrimary);
+  --alertWarningSurface: var(--statusWarningSubtle);
+  --alertWarningBorder: var(--statusWarningBorder);
+  --alertWarningText: var(--statusWarningText);
+  --alertWarningIcon: var(--statusWarningText);
+
+  /* card/ */
+  --cardFillDefault: var(--surfaceFillDefault);
+  --cardFillHighlight: var(--surfaceFillHighlight);
+  --cardFillDisable: var(--surfaceFillDisable);
+  --cardFillGhost: transparent;
+  --cardFillHover: var(--surfaceFillHover);
+  --cardBorderDefault: var(--borderDefault);
+  --cardBorderDisable: var(--borderSoft);
+  --cardBorderBrand: var(--borderBrand);
+
+  /* surface/ (component tokens for @acko/surface) */
+  --surfacePrimaryBg: var(--surfaceFillDefault);
+  --surfaceSecondaryBg: var(--surfaceFillSubtle);
+
+  /* calendar/ */
+  --calendarBorder: var(--borderSubtle);
+  --calendarDayLabel: var(--textTertiary);
+  --calendarDateDefault: var(--textPrimary);
+  --calendarDateOutOfMonth: var(--textDisabled);
+  --calendarSelectedBg: var(--fillBrand);
+  --calendarSelectedText: var(--textOnBrand);
+  --calendarRangeBand: var(--fillBrandSubtle);
+  --calendarRangeBg: var(--fillBrandSubtle);
+  --calendarRangeText: var(--textBrandStrong);
+  --calendarHoverBg: var(--surfaceFillHover);
+  --calendarCellHoverBg: var(--surfaceFillHover);
+  --calendarTodayText: var(--textBrand);
+
+  /* z-index scale (scales.md) */
+  --zDropdown: 1000;
+  --zSticky: 1100;
+  --zModal: 1300;
+  --zToast: 1400;
+  --zTooltip: 1500;
+}
+
+body {
+  background: var(--surfaceBase);
+  color: var(--textPrimary);
+  font-family: "Euclid Circular B", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================================
+   Local component CSS — stand-ins for `@acko/css/*.css`
+   Class names mirror the real package (`.acko-button`, `.acko-typography-*`,
+   etc.) so this file is a drop-in match for the shipped CSS once `@acko/css`
+   is installable.
+   ============================================================================ */
+
+/* Wrapped in the `components` layer so Tailwind's utility classes (`@layer
+   utilities`, e.g. `mt-8`) always win over these defaults — matching Tailwind's
+   own cascade model. Unlayered CSS beats layered CSS regardless of specificity
+   or source order, so without this, any margin/etc. set below would silently
+   defeat every `mt-*`/`mb-*` utility passed to these components. */
+@layer components {
+
+/* Typography renders as one of these tags — reset browser default margins here
+   (in the components layer) rather than inline, so `mt-*`/`mb-*` utilities on a
+   Typography instance's className can still override it. */
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+/* Typography (typography.md) */
+.acko-typography-display-xl {
+  font-size: 4.5rem;
+  line-height: 5rem;
+  letter-spacing: -2px;
+  font-weight: 700;
+}
+.acko-typography-display-lg {
+  font-size: 3.5rem;
+  line-height: 4rem;
+  letter-spacing: -1.5px;
+  font-weight: 700;
+}
+.acko-typography-display-md {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+.acko-typography-display-sm {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.acko-typography-heading-xl {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.acko-typography-heading-lg {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: -0.3px;
+  font-weight: 600;
+}
+.acko-typography-heading-md {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+}
+.acko-typography-heading-sm {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+.acko-typography-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.acko-typography-body-md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.acko-typography-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.acko-typography-label-lg {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.1px;
+  font-weight: 500;
+}
+.acko-typography-label-md {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+.acko-typography-label-sm {
+  font-size: 0.6875rem;
+  line-height: 0.875rem;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+.acko-typography-caption {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.acko-typography-overline {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* responsiveness.md — type downshift below 600px (size/line-height/letter-spacing only, never weight) */
+@media (max-width: 599px) {
+  .acko-typography-heading-xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: -0.3px;
+  }
+  .acko-typography-heading-lg {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    letter-spacing: -0.2px;
+  }
+}
+
+.acko-typography-weight-regular {
+  font-weight: 400;
+}
+.acko-typography-weight-medium {
+  font-weight: 500;
+}
+.acko-typography-weight-semibold {
+  font-weight: 600;
+}
+.acko-typography-weight-bold {
+  font-weight: 700;
+}
+
+/* Focus ring (ui-polish.md) — box-shadow only, never outline */
+:focus-visible {
+  box-shadow: 0 0 0 3px var(--borderFocus);
+  border-radius: var(--radiusSm);
+  outline: none;
+}
+:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+/* Button (components.md button/) */
+.acko-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radiusFull);
+  font-weight: 600;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 150ms, border-color 150ms, color 150ms;
+  touch-action: manipulation;
+}
+.acko-button:disabled {
+  cursor: not-allowed;
+}
+.acko-button-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+.acko-button-icon svg {
+  width: 100%;
+  height: 100%;
+}
+/* Nav header — back chevron + Help icon sized up to 24px (scoped here rather than
+   raising the shared 20px default, since other buttons elsewhere aren't part of this ask). */
+.acko-sticky-header .acko-button-icon {
+  width: 24px;
+  height: 24px;
+}
+/* The icon-only back button was 40px wide with its 24px icon centered inside,
+   leaving an 8px inset that didn't match the 16px gutter everything else (the
+   heading, form fields) aligns to. Shrinking the button to the icon's own size
+   puts its glyph flush on that gutter; the touch target stays 44px via a wider
+   hit-area expansion instead of the button's own box. */
+.acko-sticky-header .acko-button--icon-only.acko-button--sm {
+  width: 24px;
+}
+.acko-sticky-header .acko-button--icon-only.acko-button--sm::before {
+  inset: -10px;
+}
+
+.acko-button--md {
+  height: 48px;
+  padding: 0 20px;
+  font-size: 1rem;
+}
+.acko-button--sm {
+  position: relative;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}
+/* touch-accessibility.md: tap targets minimum 44px — sm buttons are visually 40px,
+   so extend the hit area via a pseudo-element instead of growing the visible button. */
+.acko-button--sm::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+}
+.acko-button--icon-only.acko-button--md {
+  width: 48px;
+  padding: 0;
+}
+.acko-button--icon-only.acko-button--sm {
+  width: 40px;
+  padding: 0;
+}
+
+.acko-button--primary {
+  background: var(--buttonFillPrimaryDefault);
+  color: var(--textOnBrand);
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-button--primary:hover {
+    background: var(--buttonFillPrimaryHover);
+  }
+}
+.acko-button--primary:active {
+  background: var(--buttonFillPrimaryActive);
+}
+.acko-button--primary:disabled {
+  background: var(--buttonFillPrimaryDisabled);
+}
+
+.acko-button--secondary {
+  background: var(--buttonFillSecondaryDefault);
+  color: var(--textPrimary);
+  border: var(--borderHairline) solid var(--buttonBorderSecondaryDefault);
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-button--secondary:hover {
+    background: var(--buttonFillSecondaryHover);
+  }
+}
+.acko-button--secondary:active {
+  background: var(--buttonFillSecondaryActive);
+}
+
+.acko-button--ghost {
+  background: var(--buttonFillGhostDefault);
+  color: var(--textPrimary);
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-button--ghost:hover {
+    background: var(--buttonFillGhostHover);
+  }
+}
+.acko-button--ghost:active {
+  background: var(--buttonFillGhostActive);
+}
+
+.acko-button--inverted {
+  background: var(--buttonFillInvertedDefault);
+  color: var(--textInvert);
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-button--inverted:hover {
+    background: var(--buttonFillInvertedHover);
+  }
+}
+.acko-button--inverted:active {
+  background: var(--buttonFillInvertedActive);
+}
+
+/* TextInput / Dropdown — floating label on the border line (forms-controls.md, components.md) */
+.acko-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+/* Label is hint text at rest — body-md size, vertically centered in the field,
+   like a placeholder — and floats to a small label on the border on focus or
+   once filled (acko-motion-system's motion.small.enter: 160-220ms ease-out,
+   "icons, chips, inputs, helper text"). Typography size/weight come from the
+   acko-typography-* class the component toggles; this rule only owns position,
+   color, and the background "notch" that masks the border when floated. */
+.acko-field-label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  background: transparent;
+  color: var(--inputFieldPlaceholderText);
+  z-index: 1;
+  pointer-events: none;
+  transition: top 180ms ease-out, transform 180ms ease-out, padding 180ms ease-out,
+    background-color 180ms ease-out, color 180ms ease-out;
+}
+.acko-field-label--floated {
+  top: -9px;
+  transform: translateY(0);
+  padding: 0 6px;
+  /* Cards.md surface-content-contract: TextInput/Dropdown always live inside a Card,
+     so the label "notch" must match the Card fill, not the page surface, to mask the border. */
+  background: var(--cardFillDefault);
+  color: var(--inputFieldLabelTextActive);
+}
+/* At rest (not floated), a prefix icon (e.g. "₹") sits where the label would
+   otherwise start — shift the hint text after it. Floated position (on the
+   border) is unaffected, same left edge as every other field. */
+.acko-field-label--with-prefix:not(.acko-field-label--floated) {
+  left: 40px;
+}
+.acko-input,
+.acko-dropdown-trigger {
+  width: 100%;
+  height: 56px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radiusFull);
+  border: var(--borderHairline) solid var(--inputFieldBorder);
+  background: var(--inputFieldFill);
+  color: var(--inputFieldFilledText);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 150ms;
+  touch-action: manipulation;
+}
+.acko-input::placeholder {
+  color: var(--inputFieldPlaceholderText);
+}
+.acko-input:hover,
+.acko-dropdown-trigger:hover {
+  border-color: var(--inputFieldBorderHover);
+}
+.acko-input:disabled {
+  background: var(--inputFieldFillDisabled);
+  color: var(--inputFieldLabelTextDisabled);
+  cursor: not-allowed;
+}
+.acko-input--with-prefix {
+  padding-left: 40px;
+}
+.acko-field-prefix {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: var(--inputFieldFilledText);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.acko-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-right: 44px;
+  cursor: pointer;
+  user-select: none;
+  text-align: left;
+}
+/* The selected-value text must be a shrinkable flex child (min-width: 0) for
+   ellipsis to actually truncate — a flex item's default min-width: auto means
+   long text (e.g. "Diploma/Graduate and above") overflows the trigger instead
+   of truncating when it's placed directly against a fixed-width flex row. */
+.acko-dropdown-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.acko-dropdown-trigger[aria-expanded="true"] {
+  border-color: var(--dropdownBorderOpen);
+}
+.acko-dropdown-icon {
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  color: var(--dropdownIcon);
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 150ms;
+}
+.acko-dropdown-trigger[aria-expanded="true"] ~ .acko-dropdown-icon {
+  transform: rotate(180deg);
+}
+.acko-dropdown-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dropdown panel — custom listbox, not the native OS picker (components.md
+   dropdown/ documents a full panel/option token set, so the real @acko/dropdown
+   renders its own list rather than delegating to <select>). */
+.acko-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: var(--zDropdown);
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  /* radii.md: --radius4xl is "the standard for surface containers... dropdown
+     menus" — the panel itself, not the 8px --radiusLg used just below for its
+     option rows ("Options, table cells" is documented separately). Using
+     --radiusLg on the panel made it look unrelated to the trigger's full pill
+     radius, like two different families. */
+  border-radius: var(--radius4xl);
+  border: var(--borderHairline) solid var(--dropdownPanelBorder);
+  background: var(--dropdownPanelFill);
+  box-shadow: var(--shadowL);
+}
+.acko-dropdown-panel:focus {
+  outline: none;
+}
+/* When there isn't room below the trigger, open upward instead of letting the
+   panel extend past the viewport with no way to reach its last option. */
+.acko-dropdown-panel--flip-up {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+.acko-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radiusLg);
+  color: var(--dropdownOptionText);
+  background: var(--dropdownOptionFill);
+  cursor: pointer;
+  user-select: none;
+}
+.acko-dropdown-option:hover,
+.acko-dropdown-option--highlighted {
+  background: var(--dropdownOptionHover);
+}
+.acko-dropdown-option[aria-selected="true"] {
+  background: var(--dropdownOptionSelectedBg);
+}
+.acko-dropdown-check {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--dropdownCheckIcon);
+}
+.acko-dropdown-check svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* DatePicker trigger — same shell as .acko-input/.acko-dropdown-trigger, no
+   reserved chevron gutter since this control has no trailing icon. */
+.acko-date-trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radiusFull);
+  border: var(--borderHairline) solid var(--inputFieldBorder);
+  background: var(--inputFieldFill);
+  color: var(--inputFieldFilledText);
+  font-size: 1rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 150ms;
+  touch-action: manipulation;
+}
+.acko-date-trigger:hover {
+  border-color: var(--inputFieldBorderHover);
+}
+.acko-date-trigger[aria-expanded="true"] {
+  border-color: var(--dropdownBorderOpen);
+}
+
+/* Calendar (components.md calendar/) */
+.acko-calendar-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: var(--zDropdown);
+  /* Fixed, not shrink-to-fit: without this, the panel's intrinsic width follows
+     whichever mode's content is narrowest (day grid needs 7×40px columns; the
+     month/year grids' shorter text would otherwise let it shrink), so the panel
+     visibly resized every time day/month/year mode changed. 280px content
+     (7 × 40px day cells) + 16px padding each side. */
+  width: 312px;
+  padding: 16px;
+  border-radius: var(--radius4xl);
+  border: var(--borderHairline) solid var(--calendarBorder);
+  background: var(--dropdownPanelFill);
+  box-shadow: var(--shadowL);
+}
+.acko-calendar-panel--flip-up {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+.acko-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.acko-calendar-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radiusFull);
+  border: none;
+  background: transparent;
+  color: var(--textSecondary);
+  cursor: pointer;
+}
+.acko-calendar-nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-calendar-nav-btn:hover {
+    background: var(--calendarHoverBg);
+  }
+}
+.acko-calendar-label-btn {
+  border: none;
+  background: transparent;
+  border-radius: var(--radiusMd);
+  padding: 4px 8px;
+  color: var(--textPrimary);
+  cursor: pointer;
+}
+.acko-calendar-label-btn:disabled {
+  cursor: default;
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-calendar-label-btn:not(:disabled):hover {
+    background: var(--calendarHoverBg);
+  }
+}
+.acko-calendar-weekdays,
+.acko-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.acko-calendar-weekday {
+  text-align: center;
+  color: var(--calendarDayLabel);
+  padding: 4px 0;
+}
+.acko-calendar-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 2px auto;
+  border-radius: var(--radiusFull);
+  border: none;
+  background: transparent;
+  color: var(--calendarDateDefault);
+  cursor: pointer;
+}
+/* Cells are 40px (not 44px) to keep the grid compact — touch-accessibility.md's
+   44px minimum is still met via the same invisible hit-area technique used
+   elsewhere, not by inflating the visible grid. */
+.acko-calendar-cell::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-calendar-cell:hover {
+    background: var(--calendarCellHoverBg);
+  }
+}
+.acko-calendar-cell--out {
+  color: var(--calendarDateOutOfMonth);
+}
+.acko-calendar-cell--today {
+  color: var(--calendarTodayText);
+  font-weight: 600;
+}
+.acko-calendar-cell--selected {
+  background: var(--calendarSelectedBg);
+  color: var(--calendarSelectedText);
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-calendar-cell--selected:hover {
+    background: var(--calendarSelectedBg);
+  }
+}
+.acko-calendar-grid-months,
+.acko-calendar-grid-years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.acko-calendar-cell-wide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: var(--radiusLg);
+  border: none;
+  background: transparent;
+  color: var(--calendarDateDefault);
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-calendar-cell-wide:hover {
+    background: var(--calendarCellHoverBg);
+  }
+}
+.acko-calendar-cell-wide--selected {
+  background: var(--calendarSelectedBg);
+  color: var(--calendarSelectedText);
+}
+
+/* Chip (components.md chip/) — single-select group built on native radios */
+.acko-chip-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.acko-chip-group-legend {
+  padding: 0;
+  margin-bottom: 8px;
+  color: var(--inputFieldLabeltext);
+}
+.acko-chip-row {
+  display: flex;
+  gap: 12px;
+}
+.acko-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radiusFull);
+  border: var(--borderHairline) solid var(--chipBorder);
+  background: var(--chipFill);
+  color: var(--chipText);
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color 150ms, border-color 150ms, color 150ms;
+}
+.acko-chip:has(.acko-chip-input:checked) {
+  background: var(--chipSelectedFill);
+  border-color: var(--chipSelectedBorder);
+  color: var(--chipSelectedText);
+}
+.acko-chip:has(.acko-chip-input:focus-visible) {
+  box-shadow: 0 0 0 3px var(--borderFocus);
+}
+.acko-chip-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* Alert (components.md alert/) */
+.acko-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius3xl);
+  padding: 16px 20px;
+}
+.acko-alert--warning {
+  background: var(--alertWarningSurface);
+}
+.acko-alert-body {
+  color: var(--alertBodyText);
+}
+.acko-alert--warning .acko-alert-icon {
+  color: var(--alertWarningIcon);
+}
+
+/* Card (cards.md Part 1) */
+.acko-card {
+  border-radius: var(--radius4xl);
+  background: var(--cardFillDefault);
+  border: var(--borderHairline) solid var(--cardBorderDefault);
+}
+.acko-card--primary {
+  box-shadow: var(--shadowXs);
+}
+.acko-card--secondary {
+  box-shadow: none;
+}
+
+/* Surface (cards.md Part 0 / @acko/surface) */
+.acko-surface--brand-light {
+  background: var(--surfaceAccentLight);
+}
+
+/* Sticky top nav (cards.md "Sticky nav / header rule": background must be
+   --surfaceBase, never --surfaceStaticWhite; scales.md reserves --zSticky for
+   exactly this). No border — bar fill matches the page background behind it,
+   consistent with the flat, borderless header in the source screenshots. */
+.acko-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--zSticky);
+  background: var(--surfaceBase);
+}
+
+/* touch-accessibility.md: 44px minimum tap target for a small inline text link —
+   expand the hit area vertically and to the left, without affecting the visible
+   text size or layout. No right-side expansion: in the price footer this link sits
+   flush against the "Review my plan" button, so growing right would steal its clicks. */
+.acko-tap-target-link {
+  position: relative;
+}
+.acko-tap-target-link::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  bottom: -12px;
+  left: -8px;
+  right: 0;
+}
+/* cards.md §42's link-override pattern is the only documented underline rule for
+   a text link anywhere in the skill files: no underline by default, underline
+   on hover. Applied here to "Price details" for lack of a more specific rule. */
+.acko-link-underline-on-hover {
+  text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .acko-link-underline-on-hover:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Desktop form panel (layout.md: "Use cards when content needs to be distinguished
+   from surrounding content" — on wide viewports the flat mobile form gets a defined
+   edge instead of floating in open space; below 1024px it stays flat, matching the
+   source screenshots exactly). Card variant="primary" tokens, applied responsively. */
+@media (min-width: 1024px) {
+  .acko-form-panel {
+    background: var(--cardFillDefault);
+    border: var(--borderHairline) solid var(--cardBorderDefault);
+    border-radius: var(--radius4xl);
+    box-shadow: var(--shadowXs);
+    padding: 40px;
+  }
+}
+
+/* BottomSheet — MISSING component, see missing-components log. Motion per
+   acko-motion-system curves.md: motion.surface.open (550ms default, ease-out,
+   sheet y 100%→0%, overlay opacity 0→35-40%) / motion.surface.close (400ms
+   default, ease-in). curves.md explicitly forbids inventing a cubic-bezier
+   unless approximating and saying so — using the plain CSS `ease-out`/`ease-in`
+   keywords here rather than fabricating a custom curve, which is an
+   approximation of the skill's After-Effects-described curve, not a literal
+   translation of its 50%/40% influence values. */
+@keyframes acko-bottom-sheet-overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes acko-bottom-sheet-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+.acko-bottom-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--zModal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--drawerOverlay);
+  animation: acko-bottom-sheet-overlay-in 550ms ease-out both;
+}
+.acko-bottom-sheet-overlay--closing {
+  animation: acko-bottom-sheet-overlay-in 400ms ease-in both reverse;
+}
+.acko-bottom-sheet {
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--drawerBg);
+  border-radius: var(--radius4xl) var(--radius4xl) 0 0;
+  box-shadow: var(--shadowXl);
+  padding: 12px 20px calc(20px + env(safe-area-inset-bottom));
+  animation: acko-bottom-sheet-slide-in 550ms ease-out both;
+}
+.acko-bottom-sheet--closing {
+  animation: acko-bottom-sheet-slide-in 400ms ease-in both reverse;
+}
+.acko-bottom-sheet-handle {
+  display: block;
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 16px;
+  border-radius: var(--radiusFull);
+  background: var(--borderDefault);
+}
+/* Bottom sheet options reuse the same option-row styling as the inline
+   dropdown panel, just without the panel's own border/shadow/radius (the
+   sheet itself already carries those). */
+.acko-bottom-sheet .acko-dropdown-option {
+  padding: 14px 12px;
+}
+
+/* touch-accessibility.md: "Every animation must have a fallback. No exceptions." */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+} /* end @layer components */
