@@ -1,4 +1,4 @@
-import { useState, type FocusEvent, type InputHTMLAttributes, type ReactNode } from "react";
+import { useState, useEffect, type FocusEvent, type InputHTMLAttributes, type ReactNode } from "react";
 
 interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "prefix"> {
   id: string;
@@ -33,6 +33,10 @@ export function TextInput({
   const [hasValue, setHasValue] = useState(!!(defaultValue ?? value));
   const floated = focused || hasValue;
   const describedBy = error ? `${id}-error` : helperText ? `${id}-helper` : undefined;
+
+  useEffect(() => {
+    setHasValue(!!(value ?? defaultValue));
+  }, [value, defaultValue]);
 
   return (
     <div className={["acko-field", className].filter(Boolean).join(" ")}>

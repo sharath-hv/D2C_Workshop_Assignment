@@ -8,6 +8,8 @@ interface DatePickerProps {
   id: string;
   label: string;
   defaultValue?: string; // "dd/mm/yyyy"
+  value?: string; // "dd/mm/yyyy" — for controlled component
+  onChange?: (date: string | null) => void;
   name?: string;
 }
 
@@ -46,12 +48,16 @@ function daysInMonth(year: number, month: number) {
  * not a navigation pattern — added because a birth date can be decades back, where
  * paging one month at a time is impractical. See missing-components log.
  */
-export function DatePicker({ id, label, defaultValue, name }: DatePickerProps) {
+export function DatePicker({ id, label, defaultValue, value, onChange, name }: DatePickerProps) {
   const isMobile = useIsMobile();
-  const initial = parseDate(defaultValue);
+  const initial = parseDate(value ?? defaultValue);
   const today = new Date();
 
   const [selected, setSelected] = useState(initial);
+
+  useEffect(() => {
+    setSelected(parseDate(value ?? defaultValue));
+  }, [value, defaultValue]);
   const [open, setOpen] = useState(false);
   const [focused, setFocused] = useState(false);
   const [mode, setMode] = useState<"days" | "months" | "years">("days");
@@ -111,9 +117,11 @@ export function DatePicker({ id, label, defaultValue, name }: DatePickerProps) {
   }
 
   function selectDay(day: number, month: number, year: number) {
-    setSelected({ day, month, year });
+    const date = { day, month, year };
+    setSelected(date);
     setViewMonth(month);
     setViewYear(year);
+    onChange?.(formatDate(date));
     closePicker();
   }
 
