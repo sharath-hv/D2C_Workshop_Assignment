@@ -612,7 +612,7 @@ p {
   background: var(--buttonFillPrimaryActive);
 }
 .acko-button--primary:disabled {
-  background: var(--buttonFillPrimaryDisabled);
+  background: var(--surfaceFillDisable);
   color: var(--disabledText);
 }
 
