@@ -194,7 +194,7 @@ export function AlmostThereDetailsPage() {
               </Typography>
             </div>
           </div>
-          <Button variant="inverted" size="md">
+          <Button variant="primary" size="md">
             Review my plan
           </Button>
         </div>
