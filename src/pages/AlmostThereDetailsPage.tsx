@@ -101,7 +101,7 @@ export function AlmostThereDetailsPage() {
               <div className="min-[600px]:col-span-2">
                 <TextInput id="fullName" label="Full Name" autoComplete="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
               </div>
-              <DatePicker id="dob" label="Date of birth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
+              <DatePicker id="dob" label="Date of birth" value={dateOfBirth} onChange={(date) => setDateOfBirth(date ?? "")} />
               <TextInput id="email" label="Email ID" type="email" autoComplete="email" spellCheck={false} />
               <ChipGroup name="maritalStatus" legend="Marital Status" options={MARITAL_STATUS_OPTIONS} />
               <ChipGroup
