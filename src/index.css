@@ -613,6 +613,7 @@ p {
 }
 .acko-button--primary:disabled {
   background: var(--buttonFillPrimaryDisabled);
+  color: var(--disabledText);
 }
 
 .acko-button--secondary {
@@ -684,9 +685,8 @@ p {
   top: -9px;
   transform: translateY(0);
   padding: 0 6px;
-  /* Cards.md surface-content-contract: TextInput/Dropdown always live inside a Card,
-     so the label "notch" must match the Card fill, not the page surface, to mask the border. */
-  background: var(--cardFillDefault);
+  /* Label background matches the page surface (--surfaceBase) per ACKO design system */
+  background: var(--surfaceBase);
   color: var(--inputFieldLabelTextActive);
 }
 /* At rest (not floated), a prefix icon (e.g. "₹") sits where the label would
