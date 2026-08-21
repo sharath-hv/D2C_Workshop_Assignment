@@ -8,6 +8,8 @@ interface ChipGroupProps {
   name: string;
   options: ChipOption[];
   defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 /**
@@ -17,7 +19,7 @@ interface ChipGroupProps {
  * and screen-reader semantics come for free, matching the same principle
  * cards.md's PlanRadioCard uses for custom-styled radio selection.
  */
-export function ChipGroup({ legend, name, options, defaultValue }: ChipGroupProps) {
+export function ChipGroup({ legend, name, options, defaultValue, value, onChange }: ChipGroupProps) {
   return (
     <fieldset className="acko-chip-group">
       <legend className="acko-chip-group-legend acko-typography-label-lg">{legend}</legend>
@@ -28,7 +30,8 @@ export function ChipGroup({ legend, name, options, defaultValue }: ChipGroupProp
               type="radio"
               name={name}
               value={option.value}
-              defaultChecked={option.value === defaultValue}
+              checked={value ? option.value === value : option.value === defaultValue}
+              onChange={(e) => onChange?.(e.target.value)}
               className="acko-chip-input"
             />
             {option.label}

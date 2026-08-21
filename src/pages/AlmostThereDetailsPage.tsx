@@ -46,6 +46,14 @@ const OCCUPATION_OPTIONS = [
 export function AlmostThereDetailsPage() {
   const [fullName, setFullName] = useState("Sharath Gowda");
   const [dateOfBirth, setDateOfBirth] = useState("01/01/2000");
+  const [email, setEmail] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
+  const [residentialStatus, setResidentialStatus] = useState("");
+  const [education, setEducation] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [monthlyIncome, setMonthlyIncome] = useState("");
+
+  const isFormValid = !!(fullName && dateOfBirth && email && maritalStatus && residentialStatus && education && occupation && monthlyIncome);
 
   return (
     <div style={{ background: "var(--surfaceBase)", minHeight: "100vh" }}>
@@ -102,12 +110,14 @@ export function AlmostThereDetailsPage() {
                 <TextInput id="fullName" label="Full Name" autoComplete="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
               </div>
               <DatePicker id="dob" label="Date of birth" value={dateOfBirth} onChange={(date) => setDateOfBirth(date ?? "")} />
-              <TextInput id="email" label="Email ID" type="email" autoComplete="email" spellCheck={false} />
-              <ChipGroup name="maritalStatus" legend="Marital Status" options={MARITAL_STATUS_OPTIONS} />
+              <TextInput id="email" label="Email ID" type="email" autoComplete="email" spellCheck={false} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <ChipGroup name="maritalStatus" legend="Marital Status" options={MARITAL_STATUS_OPTIONS} value={maritalStatus} onChange={setMaritalStatus} />
               <ChipGroup
                 name="residentialStatus"
                 legend="Residential Status"
                 options={RESIDENTIAL_STATUS_OPTIONS}
+                value={residentialStatus}
+                onChange={setResidentialStatus}
               />
             </div>
           </section>
@@ -117,10 +127,10 @@ export function AlmostThereDetailsPage() {
               Professional details
             </Typography>
             <div className="mt-32 grid grid-cols-1 gap-24 min-[600px]:grid-cols-2">
-              <Dropdown id="education" label="Educational Qualification" options={EDUCATION_OPTIONS} />
-              <Dropdown id="occupation" label="Occupation type" options={OCCUPATION_OPTIONS} />
+              <Dropdown id="education" label="Educational Qualification" options={EDUCATION_OPTIONS} value={education} onChange={setEducation} />
+              <Dropdown id="occupation" label="Occupation type" options={OCCUPATION_OPTIONS} value={occupation} onChange={setOccupation} />
               <div className="min-[600px]:col-span-2">
-                <TextInput id="monthlyIncome" label="Monthly income" type="text" inputMode="numeric" prefix="₹" />
+                <TextInput id="monthlyIncome" label="Monthly income" type="text" inputMode="numeric" prefix="₹" value={monthlyIncome} onChange={(e) => setMonthlyIncome(e.target.value)} />
               </div>
             </div>
           </section>
@@ -194,7 +204,7 @@ export function AlmostThereDetailsPage() {
               </Typography>
             </div>
           </div>
-          <Button variant="primary" size="md">
+          <Button variant="primary" size="md" disabled={!isFormValid}>
             Review my plan
           </Button>
         </div>

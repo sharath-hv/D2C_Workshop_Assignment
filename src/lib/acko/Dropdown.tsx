@@ -14,6 +14,8 @@ interface DropdownProps {
   label: string;
   options: DropdownOption[];
   defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
   name?: string;
 }
 
@@ -27,13 +29,15 @@ interface DropdownProps {
  * panel — a structural swap, not just a visual one, per the same file's instruction
  * to "use the package's built-in mobile variant... rather than one-off swaps."
  */
-export function Dropdown({ id, label, options, defaultValue, name }: DropdownProps) {
+export function Dropdown({ id, label, options, defaultValue, value: controlledValue, onChange, name }: DropdownProps) {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const [focused, setFocused] = useState(false);
   // No fallback to options[0] — an unset field must render genuinely empty
   // (a "Select" placeholder), not silently pre-select the first option.
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(controlledValue ?? defaultValue);
+  const isControlled = controlledValue !== undefined;
+  const displayValue = isControlled ? controlledValue : value;
   const [highlightIndex, setHighlightIndex] = useState(() =>
     Math.max(0, options.findIndex((option) => option.value === defaultValue)),
   );
@@ -43,7 +47,7 @@ export function Dropdown({ id, label, options, defaultValue, name }: DropdownPro
   const listRef = useRef<HTMLUListElement>(null);
   const listboxId = `${id}-listbox`;
   const sheetTitleId = `${id}-sheet-title`;
-  const selected = options.find((option) => option.value === value);
+  const selected = options.find((option) => option.value === displayValue);
 
   // Inline panel only: if there isn't room below the trigger to fit the panel
   // (and there's more room above), open upward instead — otherwise the panel
@@ -94,7 +98,8 @@ export function Dropdown({ id, label, options, defaultValue, name }: DropdownPro
   function commitSelection(index: number) {
     const option = options[index];
     if (!option) return;
-    setValue(option.value);
+    if (!isControlled) setValue(option.value);
+    onChange?.(option.value);
     setHighlightIndex(index);
     closeAndRefocus();
   }
