@@ -7,7 +7,7 @@ import { DatePicker } from "../lib/acko/DatePicker";
 import { ChipGroup } from "../lib/acko/Chip";
 import { Alert } from "../lib/acko/Alert";
 import { Surface } from "../lib/acko/Surface";
-import { ChevronLeft, Headphone, Discount, Info } from "../lib/acko/icons";
+import { ArrowLeft, Headphone, Discount, Info } from "../lib/acko/icons";
 
 const CONTENT_WIDTH_CLASSES = "mx-auto w-full max-w-[560px] px-16 min-[600px]:max-w-[720px] min-[600px]:px-32 lg:px-40";
 
@@ -57,7 +57,7 @@ export function AlmostThereDetailsPage() {
             variant="ghost"
             size="sm"
             iconOnly
-            iconLeft={<ChevronLeft aria-hidden="true" />}
+            iconLeft={<ArrowLeft aria-hidden="true" />}
             aria-label="Go back"
           />
           <Button variant="secondary" size="sm" iconLeft={<Headphone aria-hidden="true" />}>

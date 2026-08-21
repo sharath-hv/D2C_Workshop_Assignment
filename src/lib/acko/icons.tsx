@@ -23,6 +23,15 @@ const base = (props: IconProps) => ({
   ...props,
 });
 
+/** Back navigation — iconography.md: "Back navigation (icon-only) → ArrowLeft" */
+export function ArrowLeft(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M6 12h12M6 12l6-6M6 12l6 6" />
+    </svg>
+  );
+}
+
 /** Back navigation (this screen's plain "<" chevron — see AlmostThereDetailsPage) */
 export function ChevronLeft(props: IconProps) {
   return (
