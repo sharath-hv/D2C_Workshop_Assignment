@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Typography } from "../lib/acko/Typography";
 import { Button } from "../lib/acko/Button";
 import { TextInput } from "../lib/acko/TextInput";
@@ -43,6 +44,9 @@ const OCCUPATION_OPTIONS = [
  * component or pattern, so no `missing-components-*.md` entry was needed.
  */
 export function AlmostThereDetailsPage() {
+  const [fullName, setFullName] = useState("Sharath Gowda");
+  const [dateOfBirth, setDateOfBirth] = useState("01/01/2000");
+
   return (
     <div style={{ background: "var(--surfaceBase)", minHeight: "100vh" }}>
       {/* Sticky nav (cards.md "Sticky nav / header rule" + scales.md --zSticky) — full-bleed
@@ -70,7 +74,7 @@ export function AlmostThereDetailsPage() {
         {/* Screen title — mt-8 per explicit request, overriding layout.md's Standard Flow
             Screen template (Header ↓32 Title); see missing-components log. */}
         <Typography variant="heading-xl" weight="bold" as="h1" className="mt-8">
-          Almost there! We just need a few more details
+          You're almost there! We just need a few more details before moving ahead
         </Typography>
 
         {/* Advisory note — mt-24 per explicit request, overriding layout.md's Standard Flow
@@ -95,9 +99,9 @@ export function AlmostThereDetailsPage() {
                 tablet (>=600px) — responsiveness.md's canonical breakpoint. */}
             <div className="mt-32 grid grid-cols-1 gap-24 min-[600px]:grid-cols-2">
               <div className="min-[600px]:col-span-2">
-                <TextInput id="fullName" label="Full Name" autoComplete="name" />
+                <TextInput id="fullName" label="Full Name" autoComplete="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
               </div>
-              <DatePicker id="dob" label="Date of birth" />
+              <DatePicker id="dob" label="Date of birth" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
               <TextInput id="email" label="Email ID" type="email" autoComplete="email" spellCheck={false} />
               <ChipGroup name="maritalStatus" legend="Marital Status" options={MARITAL_STATUS_OPTIONS} />
               <ChipGroup
